@@ -17,7 +17,8 @@ def psnr_np(img1, img2):
 
 def createGrid(F):
     n, H, W,_ = F.size()  
-    G = Variable(torch.FloatTensor(n,H,W,2).cuda())  
+    # G = Variable(torch.FloatTensor(n,H,W,2).cuda()) 
+    G = Variable(torch.FloatTensor(n,H,W,2)) 
     G[:,:,:,0] = torch.linspace(-1,1,H).view(1,H,1).repeat(n,1,W)
     G[:,:,:,1] = torch.linspace(-1,1,W).view(1,1,W).repeat(n,H,1)
     G[:,:,:,0] = G[:,:,:,0].add(F[:,:,:,1]/(H-1)*2)
@@ -37,7 +38,7 @@ def generate_image_right(img, disp):
 def compute_occ_region(disp_left,disp_right):
     disp_left_ = disp_left.unsqueeze(0)
     disp_right_ = disp_right.unsqueeze(0)
-    pdb.set_trace()
+    # pdb.set_trace()
     disp_right2left = generate_image_left(disp_right_, disp_left) 
     disp_left2right = generate_image_right(disp_left_, disp_right) 
     tmp_left = (disp_left - disp_right2left).abs()

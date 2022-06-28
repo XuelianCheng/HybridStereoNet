@@ -2,9 +2,10 @@ clear
 close all
 
 gtDir = '../dataset/SCARED2019_small/disp_left';  
-% salDir = '../predict/scared2019_small/LEAStereo'; 
+salDir = '../predict/scared2019_small/LEAStereo'; 
 % salDir = '../predict/scared2019_small/HybridStereo'; 
-salDir = '../predict/scared2019_small/STTR'; 
+% salDir = '../predict/scared2019_small/STTR';
+nonocc = '../dataset/SCARED2019_small/nonocc_left';  
 
 seqPath = [salDir '/'];  % sequence Path
 seqFiles = dir(seqPath);
@@ -28,21 +29,25 @@ for i = 1:num_samples
     name = seqFiles(i+2).name;
     stereo_disp_name_gt  = [gtDir '/' name];
     stereo_disp_name_est = [salDir '/' name];
+    mask_path = [nonocc '/' name(1:20) '.png'];
     
     stereo_disp_gt = double(read(Tiff(stereo_disp_name_gt,'r')));
     stereo_disp_est= double(read(Tiff(stereo_disp_name_est,'r')));
+    valid_mask = double(imread(mask_path)/255);
    
     [h,w] = size(stereo_disp_gt);
     mask1 = stereo_disp_est>0 & stereo_disp_gt>0;
     mask2 = stereo_disp_gt>0;
     density(i) = sum(mask1(:))/sum(mask2(:));
+    
+    stereo_disp_gt_noc  = stereo_disp_gt.*double(valid_mask);
+    stereo_disp_est_noc = stereo_disp_est.*double(valid_mask);
        
-    err_3(i) = disp_error(stereo_disp_gt,stereo_disp_est,[3 0.05]);  
-    err_2(i) = disp_error(stereo_disp_gt,stereo_disp_est,[2 0.05]);  
-    err_5(i) = disp_error(stereo_disp_gt,stereo_disp_est,[5 0.05]);  
-    diff = stereo_disp_gt(mask2) - stereo_disp_est(mask2);
+    err_3(i) = disp_error(stereo_disp_gt_noc,stereo_disp_est_noc,[3 0.05]);  
+    err_2(i) = disp_error(stereo_disp_gt_noc,stereo_disp_est_noc,[2 0.05]);  
+    err_5(i) = disp_error(stereo_disp_gt_noc,stereo_disp_est_noc,[5 0.05]);  
+    diff = stereo_disp_gt_noc(mask2) - stereo_disp_est_noc(mask2);
     epe(i)   = mae(abs(diff));
-%     epe(i)   = mae(abs((stereo_disp_gt- stereo_disp_est).*mask2));
     
     diff_sq  = diff.^ 2;
     rmse(i)  = sqrt(mean(diff_sq));

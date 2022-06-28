@@ -4,6 +4,7 @@ import numpy as np
 import sys
 import pdb
 import cv2
+import torch
 import tifffile as tiff
 sys.path.append('../') # add relative path
 from utils.loss_functions import  compute_occ_region
@@ -26,10 +27,13 @@ disp_l= tiff.imread(root+'/disp_left/' +name+ '.tiff')
 disp_r= tiff.imread(root+'/disp_right/'+name+ '.tiff')
 
 if __name__ == '__main__':
-	# manually compute occluded region
-	occ_mask,_ = compute_occ_region(disp_l, disp_r)
-	# Note: code for computing the metrics can be found in module/loss.py
-	valid_mask = np.logical_and(disp_l > 0.0, ~occ_mask)
+	#compute occluded region by left and right check
+	x,y=torch.from_numpy(disp_l).float(),torch.from_numpy(disp_r).float()
+
+	occ_mask_l,_ = compute_occ_region(x.unsqueeze(0),y.unsqueeze(0))
+	occ_mask = occ_mask_l.squeeze().numpy()
+
+	valid_mask = np.logical_and(disp_l > 0.0, occ_mask<1)
     # save images
-	# cv2.imwrite(root+'occ_left/' +name+ '.png', occ_mask * 255)
+	cv2.imwrite(root+'occ_left/' +name+ '.png', occ_mask * 255)
 	cv2.imwrite(root+'nonocc_left/' +name+ '.png', valid_mask* 255)
