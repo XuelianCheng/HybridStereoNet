@@ -1,0 +1,19 @@
+MODEL:
+  TYPE: swin
+  DROP_PATH_RATE: 0.2
+  FEATURE_NET:
+    FINAL_UPSAMPLE: "expand_first"
+    EMBED_DIM: 48
+    DEPTHS: [6]
+    NUM_HEADS: [3]
+    WINDOW_SIZE: 7
+  MATCHING_NET:
+    FINAL_UPSAMPLE: "expand_first"
+    EMBED_DIM: 96
+    DEPTHS: [2, 2, 1]
+    DECODER_DEPTHS: [2, 2, 1]
+    NUM_HEADS: [3, 6, 12]
+    WINDOW_SIZE: 7
+IMG_SIZE:
+  SCENEFLOW: [336,336] 
+  SCARED: [1024,1280]

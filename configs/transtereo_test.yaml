@@ -1,0 +1,16 @@
+MODEL:
+  TYPE: swin
+  DROP_PATH_RATE: 0.2
+  FEATURE_NET:
+    FINAL_UPSAMPLE: "expand_first"
+    EMBED_DIM: 48
+    DEPTHS: [6]
+    NUM_HEADS: [3]
+    WINDOW_SIZE: 7
+IMG_SIZE:
+  SCENEFLOW: [672,1008]
+  DVPN: [336,504] #[192,384]
+  # SCARED: [1176,1176] #scared2019_small
+  SCARED: [1344,1344]   #scared2019
+
+# size should be chosen from 168,336,504,672,840,1008,1176
