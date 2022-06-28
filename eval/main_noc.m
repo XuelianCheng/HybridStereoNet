@@ -1,11 +1,11 @@
 clear 
 close all
 
-gtDir = '../dataset/SCARED2019_small/disp_left';  
-salDir = '../predict/scared2019_small/LEAStereo'; 
+gtDir = '../dataset/SCARED2019_small/disp_left'; 
+nonocc = '../dataset/SCARED2019_small/nonocc_left';   
+salDir = '../predict/scared2019_small/STTR';
+% salDir = '../predict/scared2019_small/LEAStereo'; 
 % salDir = '../predict/scared2019_small/HybridStereo'; 
-% salDir = '../predict/scared2019_small/STTR';
-nonocc = '../dataset/SCARED2019_small/nonocc_left';  
 
 seqPath = [salDir '/'];  % sequence Path
 seqFiles = dir(seqPath);

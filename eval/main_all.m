@@ -1,10 +1,10 @@
 clear 
 close all
 
-gtDir = '../dataset/SCARED2019_small/disp_left';  
-% salDir = '../predict/scared2019_small/LEAStereo'; 
-% salDir = '../predict/scared2019_small/HybridStereo'; 
-salDir = '../predict/scared2019_small/STTR'; 
+gtDir = '../dataset/SCARED2019_small/disp_left';   
+% salDir = '../predict/scared2019_small/STTR'; 
+salDir = '../predict/scared2019_small/LEAStereo'; 
+% salDir = '../predict/scared2019_small/HybridStereo';
 
 seqPath = [salDir '/'];  % sequence Path
 seqFiles = dir(seqPath);
@@ -42,7 +42,6 @@ for i = 1:num_samples
     err_5(i) = disp_error(stereo_disp_gt,stereo_disp_est,[5 0.05]);  
     diff = stereo_disp_gt(mask2) - stereo_disp_est(mask2);
     epe(i)   = mae(abs(diff));
-%     epe(i)   = mae(abs((stereo_disp_gt- stereo_disp_est).*mask2));
     
     diff_sq  = diff.^ 2;
     rmse(i)  = sqrt(mean(diff_sq));
