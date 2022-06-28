@@ -43,8 +43,8 @@ def compute_occ_region(disp_left,disp_right):
     disp_left2right = generate_image_right(disp_left_, disp_right) 
     tmp_left = (disp_left - disp_right2left).abs()
     tmp_right = (disp_right - disp_left2right).abs()
-    mask_left = (tmp_left < 1)
-    mask_right = (tmp_right < 1)
+    mask_left = (tmp_left < 5)
+    mask_right = (tmp_right < 5)
     mask_left = mask_left.float()
     mask_right = mask_right.float()
     return mask_left, mask_right
