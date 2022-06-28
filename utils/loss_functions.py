@@ -33,7 +33,30 @@ def generate_image_right(img, disp):
     ndisp = torch.stack([disp, torch.zeros_like(disp)],-1)
     pixel_coords = createGrid(ndisp) 
     return torch.nn.functional.grid_sample(img.transpose(2,3), pixel_coords)  
-  
+
+def compute_occ_region(disp_left,disp_right):
+    disp_left_ = disp_left.unsqueeze(0)
+    disp_right_ = disp_right.unsqueeze(0)
+    pdb.set_trace()
+    disp_right2left = generate_image_left(disp_right_, disp_left) 
+    disp_left2right = generate_image_right(disp_left_, disp_right) 
+    tmp_left = (disp_left - disp_right2left).abs()
+    tmp_right = (disp_right - disp_left2right).abs()
+    mask_left = (tmp_left < 1)
+    mask_right = (tmp_right < 1)
+    mask_left = mask_left.float()
+    mask_right = mask_right.float()
+    return mask_left, mask_right
+
+def compute_uncertain(disp_left,disp_right):
+    disp_left_ = disp_left.unsqueeze(0)
+    disp_right_ = disp_right.unsqueeze(0)
+    disp_right2left = generate_image_left(disp_right_, disp_left) 
+    disp_left2right = generate_image_right(disp_left_, disp_right) 
+    tmp_left = (disp_left - disp_right2left).abs()
+    tmp_right = (disp_right - disp_left2right).abs()
+    return tmp_left, tmp_right
+
 def photometric_reconstruction(left, right, disp_left_est,disp_right_est):  
     left_est  = generate_image_left(right, disp_left_est)  
     # right_est = generate_image_right(left, disp_right_est)
