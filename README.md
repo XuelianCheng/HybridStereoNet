@@ -2,7 +2,7 @@
 
 This repository contains the code for our MICCAI 2022 paper `Hierarchical Neural Architecture Searchfor Deep Stereo Matching` 
 
-![alt text](./img/HybridStereoNet.pdf)
+![alt text](./imgs/hybrid-stereo.png)
 
 ## Requirements
 
