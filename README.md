@@ -51,6 +51,7 @@ sh predict.sh
 
 ### Evaluate Tool  
 
+Use the file 'main_all.m' in eval folder to evaluate your model. Download our pre-trained model via this link: [snapshot](https://drive.google.com/drive/folders/1iqLlMQFxjdCMuq0i3NpQu5FGq5xs0BVS?usp=sharing).
 
 ### Acknowledgements
 
