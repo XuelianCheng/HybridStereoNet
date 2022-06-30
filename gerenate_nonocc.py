@@ -7,7 +7,7 @@ import cv2
 import torch
 import tifffile as tiff
 sys.path.append('../') # add relative path
-from utils.loss_functions import  compute_occ_region
+from utils.util_functions import  compute_occ_region
 
 def get_args_parser():
     parser = argparse.ArgumentParser('Set Name', add_help=False)

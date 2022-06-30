@@ -22,7 +22,7 @@ from models.build_model_hybrid import HybridStereoNet
 from config_utils.predict_args import obtain_predict_args
 from utils.colorize import get_color_map
 from utils.multadds_count import count_parameters_in_MB, comp_multadds
-from utils.loss_functions import photometric_reconstruction, psnr_np
+from utils.util_functions import photometric_reconstruction, psnr_np
 from skimage.metrics import structural_similarity as ssim
 from time import time
 from struct import unpack

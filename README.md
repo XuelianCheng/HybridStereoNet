@@ -46,7 +46,8 @@ To evaluate/train our network, you will need to download the required datasets.
 
 You can evaluate a trained model using `prediction.sh` for each dataset, that would help you generate *.png or *.pfm images correspoding to different datasets.
 ```shell
-sh predict.sh
+sh predict_scared.sh
+sh predict_davinci.sh
 ```
 
 ### Evaluate Tool  
