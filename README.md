@@ -1,6 +1,6 @@
 ## HybridStereoNet
 
-This repository contains the code for our MICCAI 2022 paper `Hierarchical Neural Architecture Searchfor Deep Stereo Matching` 
+This repository contains the code for our MICCAI 2022 paper `Deep Laparoscopic Stereo Matching with Transformers` 
 
 ![alt text](./imgs/hybrid-stereo.png)
 
