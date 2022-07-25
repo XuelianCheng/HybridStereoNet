@@ -60,6 +60,12 @@ Use the file 'main_all.m' in eval folder to evaluate your model. Download our pr
 ### Citing
 If you find this code useful, please consider to cite our work.
 
-```
+```shell
+@inproceedings{cheng2022laparoscopic,
+  title={Deep Laparoscopic Stereo Matching with Transformers},
+  author={Cheng, Xuelian and Zhong, Yiran and Harandi, Mehrtash and Drummond, Tom and Wang, Zhiyong and Ge, Zongyuan},
+  booktitle={MICCAI},
+  year={2022}
+}
 ```
 
