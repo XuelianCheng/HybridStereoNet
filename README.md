@@ -1,6 +1,7 @@
 ## HybridStereoNet
 
 This repository contains the code for our MICCAI 2022 paper `Deep Laparoscopic Stereo Matching with Transformers` 
+[[arXiv](https://arxiv.org/pdf/2207.12152v1.pdf)]
 
 ![alt text](./imgs/hybrid-stereo.png)
 
